@@ -51,13 +51,22 @@ export async function getVelarPoolData(
 export async function velarQuoter(
   velarContractAddress: string,
   amtIn: bigint,
-  reserveIn: bigint,
-  reserveOut: bigint,
-  swapFeeNum: bigint,
-  swapFeeDen: bigint,
+  tokenInName: string,
+  tokenInAddress: string,
+  tokenOutName: string,
+  tokenOutAddress: string,
   network: "mainnet" | "testnet",
   sender: string = "ST2F4BK4GZH6YFBNHYDDGN4T1RKBA7DA1BJZPJEJJ",
 ) {
+  const result = await getVelarPoolData(
+    velarContractAddress,
+    tokenInName,
+    tokenInAddress,
+    tokenOutName,
+    tokenOutAddress,
+    "mainnet",
+  );
+
   const contractName = "univ2-library";
   const functionName = "get-amount-out";
   const options = {
@@ -66,11 +75,11 @@ export async function velarQuoter(
     functionName,
     functionArgs: [
       Cl.uint(amtIn),
-      Cl.uint(reserveIn),
-      Cl.uint(reserveOut),
+      Cl.uint(result.reserve0),
+      Cl.uint(result.reserve1),
       Cl.tuple({
-        num: Cl.uint(swapFeeNum),
-        den: Cl.uint(swapFeeDen),
+        num: Cl.uint(result.swapFee.num),
+        den: Cl.uint(result.swapFee.den),
       }),
     ],
     network,
