@@ -24,8 +24,11 @@ export async function getVelarPoolData(
   };
 
   const poolId: any = await callReadOnlyFunction(options);
+  if (poolId.type == 8) throw "Pool does not exist";
+
   options.functionName = "lookup-pool";
   const poolData: any = await callReadOnlyFunction(options);
+  if (poolData.type == 8) throw "Quoter contract error";
 
   return {
     poolId: poolId.value.value,
@@ -50,7 +53,7 @@ export async function getVelarPoolData(
 
 export async function velarQuoter(
   velarContractAddress: string,
-  amtIn: bigint,
+  amtIn: bigint | number,
   tokenInName: string,
   tokenInAddress: string,
   tokenOutName: string,
@@ -87,5 +90,6 @@ export async function velarQuoter(
   };
 
   const amtOut: any = await callReadOnlyFunction(options);
+  if (amtOut.type == 8) throw "Quoter contract error";
   return amtOut.value.value;
 }
