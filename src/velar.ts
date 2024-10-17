@@ -24,7 +24,7 @@ export async function getVelarPoolData(
   };
 
   const poolId: any = await callReadOnlyFunction(options);
-  if (poolId.type == 8) throw "Pool does not exist";
+  if (poolId.type == 8 || poolId.type == 9) throw "Pool does not exist";
 
   options.functionName = "lookup-pool";
   const poolData: any = await callReadOnlyFunction(options);

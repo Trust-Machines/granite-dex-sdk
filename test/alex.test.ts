@@ -1,10 +1,6 @@
 import { alexQuoter, getAlexPoolData } from "../src";
 import {
-  aeusdcContractAddress,
-  aeusdcContractName,
   alex,
-  ststxContractAddress,
-  ststxContractName,
   susdtContractAddress,
   susdtContractName,
   wstxContractAddress,
