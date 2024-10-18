@@ -20,7 +20,7 @@ describe("Alex quoter", () => {
     );
     expect(Number(poolData.poolId)).toBe(19);
 
-    const amtOut = await alexQuoter(
+    const data = await alexQuoter(
       alex,
       100n,
       wstxContractName,
@@ -30,6 +30,6 @@ describe("Alex quoter", () => {
       "mainnet",
     );
 
-    expect(Number(amtOut)).toBeGreaterThan(150);
+    expect(Number(data.amtOut)).toBeGreaterThan(150);
   });
 });

@@ -34,6 +34,8 @@ export async function getVelarPoolData(
     poolId: poolId.value.value,
     flipped: poolData.value.data.flipped.type == 4 ? false : true,
     lpToken: cvToJSON(poolData.value.data.pool.data["lp-token"]).value,
+    token0: cvToJSON(poolData.value.data.pool.data.token0).value,
+    token1: cvToJSON(poolData.value.data.pool.data.token1).value,
     reserve0: poolData.value.data.pool.data.reserve0.value,
     reserve1: poolData.value.data.pool.data.reserve1.value,
     swapFee: {

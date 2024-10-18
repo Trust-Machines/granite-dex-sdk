@@ -45,4 +45,19 @@ describe("Aggregator quoter", () => {
       "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-share-fee-to",
     );
   });
+
+  it("extra", async () => {
+    const res = await getBestPath(
+      velar,
+      alex,
+      30438954n,
+      "velar-token",
+      "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1",
+      aeusdcContractName,
+      aeusdcContractAddress,
+      "mainnet",
+    );
+
+    console.log(res);
+  });
 });

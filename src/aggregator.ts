@@ -1,5 +1,5 @@
 import { alexQuoter } from "./alex";
-import { velarQuoter } from "./velar";
+import { getVelarPoolData, velarQuoter } from "./velar";
 
 export async function getBestPath(
   velar: string,
@@ -28,9 +28,10 @@ export async function getBestPath(
   }
 
   let alexAmtOut;
+  let alexPoolData: any = {};
 
   try {
-    alexAmtOut = await alexQuoter(
+    alexPoolData = await alexQuoter(
       alex,
       amtIn,
       tokenInName,
@@ -39,6 +40,7 @@ export async function getBestPath(
       tokenOutAddress,
       network,
     );
+    alexAmtOut = alexPoolData.amtOut;
   } catch {
     alexAmtOut = 0n;
   }
@@ -46,11 +48,26 @@ export async function getBestPath(
   const dex = alexAmtOut > velarAmtOut ? "alex" : "velar";
   let data: any = {};
 
-  if (dex == "velar")
+  let poolData: any = {};
+  if (dex == "velar") {
+    poolData = await getVelarPoolData(
+      velar,
+      tokenInName,
+      tokenInAddress,
+      tokenOutName,
+      tokenOutAddress,
+      network,
+    );
     data = {
+      ...poolData,
       shareFeeTo:
         "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-share-fee-to",
     };
+  } else {
+    data = {
+      factor: alexPoolData.factor,
+    };
+  }
 
   return {
     dex,

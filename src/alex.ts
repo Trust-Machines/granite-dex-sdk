@@ -44,7 +44,7 @@ export async function alexQuoter(
   tokenOutAddress: string,
   network: "mainnet" | "testnet",
   sender: string = "ST2F4BK4GZH6YFBNHYDDGN4T1RKBA7DA1BJZPJEJJ",
-): Promise<number> {
+) {
   const alexFactor0 = 100000000;
   const alexFactor1 = 5000000;
 
@@ -72,5 +72,5 @@ export async function alexQuoter(
     if (amtOut.type == 8) throw "Quoter contract error";
   }
 
-  return amtOut.value.value;
+  return { amtOut: amtOut.value.value, factor: options.functionArgs[2] };
 }
