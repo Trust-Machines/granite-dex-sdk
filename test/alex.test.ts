@@ -5,6 +5,7 @@ import {
   susdtContractName,
   wstxContractAddress,
   wstxContractName,
+  defaultSender,
 } from "./constants";
 
 describe("Alex quoter", () => {
@@ -17,6 +18,7 @@ describe("Alex quoter", () => {
       susdtContractAddress,
       100000000,
       "mainnet",
+      defaultSender,
     );
     expect(Number(poolData.poolId)).toBe(19);
 
@@ -28,6 +30,7 @@ describe("Alex quoter", () => {
       susdtContractName,
       susdtContractAddress,
       "mainnet",
+      defaultSender,
     );
 
     expect(Number(data.amtOut)).toBeGreaterThan(150);

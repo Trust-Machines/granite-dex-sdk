@@ -5,6 +5,7 @@ import {
   ststxContractAddress,
   ststxContractName,
   velar,
+  defaultSender,
 } from "./constants";
 
 describe("Velar quoter", () => {
@@ -16,6 +17,7 @@ describe("Velar quoter", () => {
       aeusdcContractName,
       aeusdcContractAddress,
       "mainnet",
+      defaultSender,
     );
     expect(result.flipped).toBe(false);
 
@@ -27,6 +29,7 @@ describe("Velar quoter", () => {
       aeusdcContractName,
       aeusdcContractAddress,
       "mainnet",
+      defaultSender,
     );
 
     expect(Number(amtOut)).toBeGreaterThan(150);

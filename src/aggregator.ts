@@ -10,6 +10,7 @@ export async function getBestPath(
   tokenOutName: string,
   tokenOutAddress: string,
   network: "mainnet" | "testnet",
+  sender: string
 ) {
   let velarAmtOut;
 
@@ -22,6 +23,7 @@ export async function getBestPath(
       tokenOutName,
       tokenOutAddress,
       network,
+      sender,
     );
   } catch {
     velarAmtOut = 0n;
@@ -39,6 +41,7 @@ export async function getBestPath(
       tokenOutName,
       tokenOutAddress,
       network,
+      sender,
     );
     alexAmtOut = alexPoolData.amtOut;
   } catch {
@@ -57,6 +60,7 @@ export async function getBestPath(
       tokenOutName,
       tokenOutAddress,
       network,
+      sender,
     );
     data = {
       ...poolData,

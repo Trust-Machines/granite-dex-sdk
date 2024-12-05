@@ -7,7 +7,7 @@ export async function getVelarPoolData(
   tokenOutName: string,
   tokenOutAddress: string,
   network: "mainnet" | "testnet",
-  sender: string = "ST2F4BK4GZH6YFBNHYDDGN4T1RKBA7DA1BJZPJEJJ",
+  sender: string,
 ) {
   const contractName = "univ2-core";
   const functionName = "get-pool-id";
@@ -61,7 +61,7 @@ export async function velarQuoter(
   tokenOutName: string,
   tokenOutAddress: string,
   network: "mainnet" | "testnet",
-  sender: string = "ST2F4BK4GZH6YFBNHYDDGN4T1RKBA7DA1BJZPJEJJ",
+  sender: string,
 ) {
   const result = await getVelarPoolData(
     velarContractAddress,
@@ -70,6 +70,7 @@ export async function velarQuoter(
     tokenOutName,
     tokenOutAddress,
     "mainnet",
+    sender,
   );
 
   const contractName = "univ2-library";

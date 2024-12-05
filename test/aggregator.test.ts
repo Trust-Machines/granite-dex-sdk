@@ -10,6 +10,7 @@ import {
   velar,
   wstxContractAddress,
   wstxContractName,
+  defaultSender,
 } from "./constants";
 
 describe("Aggregator quoter", () => {
@@ -23,6 +24,7 @@ describe("Aggregator quoter", () => {
       susdtContractName,
       susdtContractAddress,
       "mainnet",
+      defaultSender,
     );
 
     expect(res.dex).toBe("alex");
@@ -38,26 +40,12 @@ describe("Aggregator quoter", () => {
       aeusdcContractName,
       aeusdcContractAddress,
       "mainnet",
+      defaultSender,
     );
 
     expect(res.dex).toBe("velar");
     expect(res.data?.shareFeeTo).toBe(
       "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-share-fee-to",
     );
-  });
-
-  it("extra", async () => {
-    const res = await getBestPath(
-      velar,
-      alex,
-      30438954n,
-      "velar-token",
-      "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1",
-      aeusdcContractName,
-      aeusdcContractAddress,
-      "mainnet",
-    );
-
-    console.log(res);
   });
 });

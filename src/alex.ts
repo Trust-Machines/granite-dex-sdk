@@ -8,7 +8,7 @@ export async function getAlexPoolData(
   tokenOutAddress: string,
   factor: bigint | number,
   network: "mainnet" | "testnet",
-  sender: string = "ST2F4BK4GZH6YFBNHYDDGN4T1RKBA7DA1BJZPJEJJ",
+  sender: string,
 ) {
   const contractName = "amm-registry-v2-01";
   const functionName = "get-pool-details";
@@ -43,7 +43,7 @@ export async function alexQuoter(
   tokenOutName: string,
   tokenOutAddress: string,
   network: "mainnet" | "testnet",
-  sender: string = "ST2F4BK4GZH6YFBNHYDDGN4T1RKBA7DA1BJZPJEJJ",
+  sender: string,
 ) {
   const alexFactor0 = 100000000;
   const alexFactor1 = 5000000;
