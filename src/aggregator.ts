@@ -61,7 +61,7 @@ export async function getBestPath(
     data = {
       ...poolData,
       shareFeeTo:
-        "SP1Y5YSTAHZ88XYK1VPDH24GY0HPX5J4JECTMY4A1.univ2-share-fee-to",
+        `${velar}.univ2-share-fee-to`,
     };
   } else {
     data = {
